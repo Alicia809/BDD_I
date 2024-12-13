@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Factura</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/facturacion.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    
+
+</head>
+<body>
+
+    <!-- navigation -->
+    <div class = "navigation">
+    <ul>
+        <li>
+            <a href="">
+                <span class="icon"><ion-icon name="flower-outline"></ion-icon>
+                </span>
+                <span class="title">LADY SA LADY SU</span>
+            </a>
+        </li>
+
+
+
+        <li>
+            <a href="pagina.html">
+                <span class="icon"><ion-icon name="person-outline"></ion-icon>
+                </span>
+                <span class="title">INICIO</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="facturacion.html">
+                <span class="icon"><ion-icon name="clipboard-outline"></ion-icon>
+                </span>
+                <span class="title">FACTURACION</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="empleados.html">
+                <span class="icon"><ion-icon name="people-outline"></ion-icon>
+                </span>
+                <span class="title">GESTION DE EMPLEADOS</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="clientes.html">
+                <span class="icon"><ion-icon name="people-outline"></ion-icon>
+                </span>
+                <span class="title">GESTION DE CLIENTES</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="productos.html">
+                <span class="icon"><ion-icon name="shirt-outline"></ion-icon></span>
+                <span class="title">GESTION DE PRODUCTOS</span>
+            </a>
+        </li> 
+        <li>
+            <a href="https://app.tango.us/app/workflow/Tienda-de-Ropa--Lady-Sa-Lady-Su---Gesti-n-de-Empleados--Clientes-y-Productos-990bbcb321ab42bab462bcadf220cfa4">
+                <span class="icon"><ion-icon name="documents-outline"></ion-icon></span>
+                <span class="title">GUIA PARA EL USUARIO</span>
+            </a>
+        </li> 
+    </ul>
+
+    </div>
+
+
+    <!-- main -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle menu-toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <!-- horizontal navigation -->
+            <div class="horizontal-navigation">
+                <ul>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Formulario de Factura -->
+        <div class="form-container">
+            <h2 class="form-title">Factura</h2>
+            <form id="fform-container">
+                <div class="form-row">
+                    <div class="form-group inline-group">
+                        <label for="id">ID Factura</label>
+                        <input type="text" id="id" name="id">
+                    </div>
+                    <div class="form-group inline-group">
+                        <label for="fecha">Fecha </label>
+                        <input type="date" id="fecha" name="fecha">
+                    </div>
+                </div>
+                               
+                <div class="form-group wide">
+                    <label for="sucursal_id">Sucursal</label>
+                    <select id="sucursal_id" name="sucursal_id" class="select3" style="width: 50%;">
+                    </select>
+                </div>
+                <div class="form-group double">
+                    <label for="empleado_id">Empleado ID</label>
+                    <input type="text" id="empleado_id" name="empleado_id" oninput="obtenerNombre('empleado', this.value)">
+                    <span id="nombre_empleado"></span>
+                </div>  
+                <div class="form-group double">
+                    <label for="cliente_id">NO. Identidad Cliente</label>
+                    <input type="text" id="cliente_id" name="cliente_id" oninput="obtenerNombre('cliente', this.value)">
+                    <span id="nombre_cliente"></span>
+                </div>
+                <div class="form-group double">
+                    <label for="tarjeta_id">NO. Tarjeta de Fidelizacion</label>
+                    <input type="text" id="tarjeta_id" name="tarjeta_id">
+                    <span id="nombre_cliente"></span>
+                </div> 
+                <div class="form-group wide">
+                    <label for="tipo_movimiento">Tipo Movimiento</label>
+                    <div id="tipo_movimiento">
+                        <label>
+                            Acumula puntos
+                            <input type="radio" name="tipo_movimiento" value="1">
+                        </label>
+                        <label>
+                            Utiliza puntos
+                            <input type="radio" name="tipo_movimiento" value="2">
+                        </label>
+                    </div>
+                    
+                    <div class="form-group" style="padding: 0; margin: 0;">
+                        <ul style="list-style-type: none; padding: 0; margin: 0;">
+                          <li style="margin: 0; color: #fff5f5;">. </li>
+                          <li style="margin: 0; color: #fff5f5;">. </li>
+                        </ul>
+                    </div>
+                      
+                      
+                    <div class="form-group">
+                        <div>
+                            <label for="puntos">Puntos Acumulados en tarjeta
+                                <input type="text" id="puntos" name="puntos">
+                            </label></div>
+                    </div>
+                </div>                
+                <div class="form-group wide">
+                    <label for="pago_id">Forma de Pago</label>
+                    <select id="pago_id" name="pago_id" class="select2" style="width: 50%;">
+                    </select>
+                </div>             
+                <div id="producto-container">
+                    <h3>Producto</h3>
+                    <div class="form-group producto">
+                        <label for="id_producto_0">ID Producto</label>
+                        <input type="text" id="id_producto_0" class="id short" name="producto_id" oninput="obtenerNombre('producto', this.value, 0)">
+                        <span id="nombre_producto_0"></span>
+                        <label for="cantidad_0">Cantidad</label>
+                        <input type="text" id="cantidad_0" class="cantidad short" name="cantidad_prod">
+                        <label for="precio_unitario_0">Precio Unitario</label>
+                        <input type="text" id="precio_unitario_0" class="precio_unitario short" name="precio_unitario" readonly>
+                        <button type="button" onclick="eliminarProducto(this)">Eliminar</button>
+                    </div>
+                </div>                                
+                <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+                <div id="recargo-container">
+                    <h3>Recargos</h3>
+                    <!-- Los recargos se agregarán dinámicamente aquí -->
+                </div>
+                <button type="button" onclick="agregarRecargo()">Agregar Recargo</button>
+                <div id="descuento-container">
+                    <h3>Descuentos</h3>
+                    <!-- Los descuentos se agregarán dinámicamente aquí -->
+                </div>
+                <button type="button" onclick="agregarDescuento()">Agregar Descuento</button>
+                <div id="impuesto-container">
+                    <h3>Impuestos</h3>
+                    <!-- Los descuentos se agregarán dinámicamente aquí -->
+                </div>
+                <button type="button" onclick="agregarImpuesto()">Agregar Impuesto</button>
+                <div class="form-buttons">
+                    <button type="button" onclick="registrarFactura()">REGISTRAR</button>
+                </div>
+                <div class="total">
+                    Total: $<span id="total">0.00</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toggle Script -->
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.navigation').classList.toggle('active');
+        });
+    </script>
+    <!-- scripts -->
+    <script src="../js/main.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+    
+    <script>
+         // Función para obtener el ID y la fecha de la factura
+         async function obtenerInfoFactura() {
+            try {
+                const response = await fetch('http://localhost:3000/factura_info');
+                
+                // Verifica si la respuesta es correcta
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+
+                // Convertir la fecha a formato "YYYY-MM-DD"
+                const fecha = new Date(data.fecha_actual);
+                const fechaFormateada = fecha.toISOString().split('T')[0];
+
+                document.getElementById('id').value = data.nuevo_id;
+                document.getElementById('fecha').value = fechaFormateada; // Asignar la fecha formateada
+            } catch (error) {
+                console.error('Error al obtener información de la factura:', error);
+            }
+        }
+
+        // Llamar a la función cuando se carga la página
+        document.addEventListener('DOMContentLoaded', obtenerInfoFactura);
+
+        // Función para agregar un nuevo formulario de producto
+        let productoCount = 0;
+
+        function agregarProducto() {
+            productoCount++; // Incrementamos el contador de productos
+            const productoContainer = document.getElementById('producto-container');
+            const productoDiv = document.createElement('div');
+            productoDiv.className = 'form-group producto';
+            productoDiv.innerHTML = `
+                <label for="id_producto_${productoCount}">ID Producto</label>
+                <input type="text" id="id_producto_${productoCount}" class="id short" name="producto_id_${productoCount}" oninput="obtenerNombre('producto', this.value, ${productoCount})">
+                <span id="nombre_producto_${productoCount}"></span>
+                <label for="cantidad_${productoCount}">Cantidad</label>
+                <input type="text" id="cantidad_${productoCount}" class="cantidad short" name="cantidad_prod_${productoCount}">
+                <label for="precio_unitario_${productoCount}">Precio Unitario</label>
+                <input type="text" id="precio_unitario_${productoCount}" class="precio_unitario short" name="precio_unitario_${productoCount}" readonly>
+                <button type="button" onclick="eliminarProducto(this)">Eliminar</button>
+            `;
+            productoContainer.appendChild(productoDiv);
+        }
+
+
+        // Función para eliminar un formulario de producto
+        function eliminarProducto(button) {
+            button.parentElement.remove();
+            calcularTotal(); // Recalcula el total al eliminar un producto
+        }
+
+        // Función para agregar un nuevo formulario de recargo
+        let recargoCount = 0;
+
+        function agregarRecargo() {
+            recargoCount++;
+            const recargoContainer = document.getElementById('recargo-container');
+            const recargoDiv = document.createElement('div');
+            recargoDiv.className = 'form-group recargo';
+            recargoDiv.innerHTML = `
+                <label for="recargo_nombre_${recargoCount}">Nombre del Recargo</label>
+                <select id="recargo_nombre_${recargoCount}" class="recargo_nombre select2" name="recargo_nombre_${recargoCount}" style="width: 100%;">
+                    <!-- Las opciones se llenarán mediante JavaScript -->
+                </select>
+                <label for="recargo_monto_${recargoCount}">Monto</label>
+                <input type="number" id="recargo_monto_${recargoCount}" class="recargo_monto short" name="recargo_monto_${recargoCount}" step="0.01" readonly>
+                <button type="button" onclick="eliminarRecargo(this)">Eliminar</button>
+            `;
+            recargoContainer.appendChild(recargoDiv);
+
+            // Inicializar Select2 para el nuevo recargo
+            $('#recargo_nombre_' + recargoCount).select2({
+                placeholder: 'Selecciona un recargo',
+                ajax: {
+                    url: 'http://localhost:3000/recargos',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data.recargos.map(recargo => ({
+                                id: recargo.id,
+                                text: recargo.descripcion
+                            }))
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            // Manejar el cambio en el select de recargos
+            $('#recargo_nombre_' + recargoCount).on('change', function() {
+                const selectedRecargoId = $(this).val();
+                obtenerMontoRecargo(selectedRecargoId, recargoCount);
+            });
+
+            calcularTotal(); // Recalcula el total al agregar un recargo
+        }
+
+        function eliminarRecargo(button) {
+            const recargoDiv = button.parentElement;
+            recargoDiv.remove();
+            calcularTotal(); // Recalcula el total al eliminar un recargo
+        }
+
+        // Función para obtener el monto de un recargo
+        function obtenerMontoRecargo(recargoId, recargoIndex) {
+            console.log('Recargo ID:', recargoId); // Verifica que se esté obteniendo el ID correcto
+            fetch(`http://localhost:3000/recargos/${recargoId}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Datos Recargo:', data); // Verifica la respuesta del servidor
+                    if (data.success) {
+                        document.getElementById(`recargo_monto_${recargoIndex}`).value = data.recargo.porcentaje;
+                        calcularTotal(); // Recalcula el total al agregar un recargo
+                    } else {
+                        document.getElementById(`recargo_monto_${recargoIndex}`).value = 'No encontrado';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById(`recargo_monto_${recargoIndex}`).value = 'Error al buscar';
+                });
+        }
+
+        // Función para agregar un nuevo formulario de descuento
+        let descuentoCount = 0;
+
+        function agregarDescuento() {
+            descuentoCount++;
+            const descuentoContainer = document.getElementById('descuento-container');
+            const descuentoDiv = document.createElement('div');
+            descuentoDiv.className = 'form-group descuento';
+            descuentoDiv.innerHTML = `
+                <label for="descuento_nombre_${descuentoCount}">Nombre del Descuento</label>
+                <select id="descuento_nombre_${descuentoCount}" class="descuento_nombre select2" name="descuento_nombre_${descuentoCount}" style="width: 100%;">
+                    <!-- Las opciones se llenarán mediante JavaScript -->
+                </select>
+                <label for="descuento_monto_${descuentoCount}">Monto</label>
+                <input type="number" id="descuento_monto_${descuentoCount}" class="descuento_monto short" name="descuento_monto_${descuentoCount}" step="0.01" readonly>
+                <button type="button" onclick="eliminarDescuento(this)">Eliminar</button>
+            `;
+            descuentoContainer.appendChild(descuentoDiv);
+
+            // Inicializar Select2 para el nuevo descuento
+            $('#descuento_nombre_' + descuentoCount).select2({
+                placeholder: 'Selecciona un descuento',
+                ajax: {
+                    url: 'http://localhost:3000/descuentos',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data.descuentos.map(descuento => ({
+                                id: descuento.id,
+                                text: descuento.descripcion
+                            }))
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            // Manejar el cambio en el select de descuentos
+            $('#descuento_nombre_' + descuentoCount).on('change', function() {
+                const selectedDescuentoId = $(this).val();
+                obtenerMontoDescuento(selectedDescuentoId, descuentoCount);
+            });
+
+            calcularTotal(); // Recalcula el total al agregar un descuento
+        }
+        
+        // Función para eliminar un descuento
+        function eliminarDescuento(button) {
+            const descuentoDiv = button.parentElement;
+            descuentoDiv.remove();
+            calcularTotal(); // Recalcula el total al eliminar un descuento
+        }
+
+        // Función para obtener el monto de un descuento
+        function obtenerMontoDescuento(descuentoId, descuentoIndex) {
+            console.log('Descuento ID:', descuentoId); // Verifica que se esté obteniendo el ID correcto
+            fetch(`http://localhost:3000/descuentos/${descuentoId}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Datos Descuento:', data); // Verifica la respuesta del servidor
+                    if (data.success) {
+                        document.getElementById(`descuento_monto_${descuentoIndex}`).value = data.descuento.porcentaje;
+                        calcularTotal(); // Recalcula el total al agregar un descuento
+                    } else {
+                        document.getElementById(`descuento_monto_${descuentoIndex}`).value = 'No encontrado';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById(`descuento_monto_${descuentoIndex}`).value = 'Error al buscar';
+                });
+        }
+        
+        // Función para agregar un nuevo formulario de impuesto
+        let impuestoCount = 0;
+
+        function agregarImpuesto() {
+            impuestoCount++;
+            const impuestoContainer = document.getElementById('impuesto-container');
+            const impuestoDiv = document.createElement('div');
+            impuestoDiv.className = 'form-group impuesto';
+            impuestoDiv.innerHTML = `
+                <label for="impuesto_nombre_${impuestoCount}">Nombre del Impuesto</label>
+                <select id="impuesto_nombre_${impuestoCount}" class="impuesto_nombre select2" name="impuesto_nombre_${impuestoCount}" style="width: 100%;">
+                    <!-- Las opciones se llenarán mediante JavaScript -->
+                </select>
+                <label for="impuesto_monto_${impuestoCount}">Monto</label>
+                <input type="number" id="impuesto_monto_${impuestoCount}" class="impuesto_monto short" name="impuesto_monto_${impuestoCount}" step="0.01" readonly>
+                <button type="button" onclick="eliminarImpuesto(this)">Eliminar</button>
+            `;
+            impuestoContainer.appendChild(impuestoDiv);
+
+            // Inicializar Select2 para el nuevo impuesto
+            $('#impuesto_nombre_' + impuestoCount).select2({
+                placeholder: 'Selecciona un impuesto',
+                ajax: {
+                    url: 'http://localhost:3000/impuestos',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data.impuestos.map(impuesto => ({
+                                id: impuesto.id,
+                                text: impuesto.descripcion
+                            }))
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            // Manejar el cambio en el select de impuestos
+            $('#impuesto_nombre_' + impuestoCount).on('change', function() {
+                const selectedImpuestoId = $(this).val();
+                obtenerMontoImpuesto(selectedImpuestoId, impuestoCount);
+            });
+
+            calcularTotal(); // Recalcula el total al agregar un impuesto
+        }
+        // Función para eliminar un impuesto
+        function eliminarImpuesto(button) {
+            const impuestoDiv = button.parentElement;
+            impuestoDiv.remove();
+            calcularTotal(); // Recalcula el total al eliminar un impuesto
+        }
+
+        // Función para obtener el monto de un impuesto
+        function obtenerMontoImpuesto(impuestoId, impuestoIndex) {
+            console.log('IMPUESTO ID:', impuestoId); // Verifica que se esté obteniendo el ID correcto
+            fetch(`http://localhost:3000/impuestos/${impuestoId}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Datos Impuesto:', data); // Verifica la respuesta del servidor
+                    if (data.success) {
+                        document.getElementById(`impuesto_monto_${impuestoIndex}`).value = data.impuesto.porcentaje;
+                        calcularTotal(); // Recalcula el total al agregar un impuesto
+                    } else {
+                        document.getElementById(`impuesto_monto_${impuestoIndex}`).value = 'No encontrado';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById(`impuesto_monto_${impuestoIndex}`).value = 'Error al buscar';
+                });
+        }
+
+        // Función para calcular el total de la factura
+        function calcularTotal() {
+            const productos = Array.from(document.querySelectorAll('.producto')).map(productoDiv => {
+                const cantidad = parseFloat(productoDiv.querySelector('.cantidad').value) || 0;
+                const precioUnitario = parseFloat(productoDiv.querySelector('.precio_unitario').value) || 0;
+                return {
+                    cantidad,
+                    precioUnitario
+                };
+            });
+
+            const totalProductos = productos.reduce((acc, p) => acc + (p.cantidad * p.precioUnitario), 0);
+
+            const recargos = Array.from(document.querySelectorAll('.recargo')).map(recargoDiv => {
+                const monto = parseFloat(recargoDiv.querySelector('.recargo_monto').value) || 0;
+                return {
+                    monto
+                };
+            });
+
+            const totalRecargos = recargos.reduce((acc, r) => acc + r.monto, 0);
+
+            const descuentos = Array.from(document.querySelectorAll('.descuento')).map(descuentoDiv => {
+                const monto = parseFloat(descuentoDiv.querySelector('.descuento_monto').value) || 0;
+                return {
+                    monto
+                };
+            });
+
+            const totalDescuentos = descuentos.reduce((acc, r) => acc + r.monto, 0);
+
+            const impuestos = Array.from(document.querySelectorAll('.impuesto')).map(impuestoDiv => {
+                const monto = parseFloat(impuestoDiv.querySelector('.impuesto_monto').value) || 0;
+                return {
+                    monto
+                };
+            });
+
+            const totalImpuestos = impuestos.reduce((acc, r) => acc + r.monto, 0);
+
+            const total = totalProductos + totalRecargos - totalDescuentos + totalImpuestos;
+
+            document.getElementById('total').innerText = total.toFixed(2);
+            return total;
+        }
+
+        // Agregar evento input para recalcular el total en tiempo real
+        document.addEventListener('input', calcularTotal);
+
+        // Función para obtener nombres según un id dado
+        function obtenerNombre(tipo, id, index) {
+            console.log(`Buscando ${tipo} con ID: ${id}`);
+            if (!id) {
+                if (tipo === 'producto') {
+                    const nombreProductoElement = document.getElementById(`nombre_producto_${index}`);
+                    const precioUnitarioElement = document.getElementById(`precio_unitario_${index}`);
+                    if (nombreProductoElement && precioUnitarioElement) {
+                        nombreProductoElement.innerText = '';
+                        precioUnitarioElement.value = '';
+                    }
+                } else if (tipo === 'sucursal') {
+                    const nombreSucursalElement = document.getElementById('nombre_sucursal');
+                    if (nombreSucursalElement) {
+                        nombreSucursalElement.innerText = '';
+                    }
+                } else if (tipo === 'forma_de_pago') {
+                    const formaPagoElement = document.getElementById('forma_pago_forma_de_pago');
+                    if (formaPagoElement) {
+                        formaPagoElement.innerText = '';
+                    }
+                } else {
+                    const nombreTipoElement = document.getElementById(`nombre_${tipo}`);
+                    if (nombreTipoElement) {
+                        nombreTipoElement.innerText = '';
+                    }
+                }
+                return;
+            }
+
+            fetch(`http://localhost:3000/nombre/${tipo}/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (tipo === 'producto') {
+                            const nombreProductoElement = document.getElementById(`nombre_producto_${index}`);
+                            const precioUnitarioElement = document.getElementById(`precio_unitario_${index}`);
+                            if (nombreProductoElement && precioUnitarioElement) {
+                                nombreProductoElement.innerText = data.nombre;
+                                precioUnitarioElement.value = data.precio_unitario;
+                            }
+                        } else if (tipo === 'sucursal') {
+                            const nombreSucursalElement = document.getElementById('nombre_sucursal');
+                            if (nombreSucursalElement) {
+                                nombreSucursalElement.innerText = data.nombre;
+                            }
+                        } else if (tipo === 'forma_de_pago') {
+                            const formaPagoElement = document.getElementById('forma_pago_forma_de_pago');
+                            if (formaPagoElement) {
+                                formaPagoElement.innerText = data.forma_pago;
+                            }
+                        } else {
+                            const nombreTipoElement = document.getElementById(`nombre_${tipo}`);
+                            if (nombreTipoElement) {
+                                nombreTipoElement.innerText = data.nombre;
+                            }
+                        }
+                    } else {
+                        // Manejo de errores similares a los de arriba
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Manejo de errores similares a los de arriba
+                });
+        }
+
+        // Inicializar Select2 para forma de pago
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Selecciona una forma de pago',
+                ajax: {
+                    url: 'http://localhost:3000/forma_pagos',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data.forma_pagos.map(forma_de_pago => ({
+                                id: forma_de_pago.id,
+                                text: forma_de_pago.forma_pago
+                            }))
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            // Función para obtener el nombre de la forma de pago
+            $('#pago_id').on('change', function() {
+                const selectedPagoId = $(this).val();
+                obtenerNombre('forma_pago', selectedPagoId);
+            });
+        });
+
+        // Inicializar Select2 para Sucursal
+        $(document).ready(function() {
+            $('.select3').select2({
+                placeholder: 'Selecciona una sucursal',
+                ajax: {
+                    url: 'http://localhost:3000/sucursales',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data.sucursales.map(sucursal => ({
+                                id: sucursal.id,
+                                text: sucursal.nombre
+                            }))
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            // Función para obtener el nombre de la sucursal seleccionada
+            $('#sucursal_id').on('change', function() {
+                const selectedSucursalId = $(this).val();
+                obtenerNombre('sucursal', selectedSucursalId);
+            });
+        });
+
+        //Funcion para obtener los puntos acumulados en una tarjeta
+        /*(por factor de tiempo no se trabajara con la suma de puntos, 
+        solo con el campo que tenga mayor cantidad)*/
+        document.getElementById('tarjeta_id').addEventListener('change', function() {
+            const tarjetaId = this.value;
+
+            fetch(`http://localhost:3000/puntos/${tarjetaId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.puntos !== undefined) {
+                        document.getElementById('puntos').value = data.puntos;
+                    } else {
+                        document.getElementById('puntos').value = 'No encontrado';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+        // Función para registrar la factura en la base de datos
+        function registrarFactura() {
+            const id = document.getElementById('id').value;
+            const fecha = document.getElementById('fecha').value;
+            const tipoMovimiento = document.querySelector('input[name="tipo_movimiento"]:checked')?.value;
+            const sucursal_id = document.getElementById('sucursal_id').value;
+            const cliente_id = document.getElementById('cliente_id').value;
+            const empleado_id = document.getElementById('empleado_id').value;
+            const tarjeta_id = document.getElementById('tarjeta_id').value;
+            const puntos = document.getElementById('puntos').value;
+            const pago_id = document.getElementById('pago_id').value;
+
+            // Recolectar productos
+            const producto = Array.from(document.querySelectorAll('.producto')).map(productoDiv => ({
+                producto_id: productoDiv.querySelector('.id').value,
+                cantidad: productoDiv.querySelector('.cantidad').value,
+            }));
+
+            // Recolectar recargos, descuentos e impuestos
+            const recargos = Array.from(document.querySelectorAll('.recargo')).map(recargoDiv => {
+                const recargoIdElement = recargoDiv.querySelector('.recargo_nombre');
+                const recargoMontoElement = recargoDiv.querySelector('.recargo_monto');
+                
+                console.log('Recargo ID Element:', recargoIdElement);
+                console.log('Recargo Monto Element:', recargoMontoElement);
+
+                return {
+                    recargo_id: recargoIdElement ? recargoIdElement.value : null,
+                    recargo_monto: recargoMontoElement ? recargoMontoElement.value : null
+                };
+            }).filter(recargo => recargo.recargo_id !== null);
+
+            console.log('Recargos:', recargos);
+
+
+            const descuentos = Array.from(document.querySelectorAll('.descuento')).map(descuentoDiv => {
+                const descuentoIdElement = descuentoDiv.querySelector('.descuento_nombre');
+                const descuentoMontoElement = descuentoDiv.querySelector('.descuento_monto');
+
+                console.log('Descuento ID Element:', descuentoIdElement);
+                console.log('Descuento Monto Element:', descuentoMontoElement);
+
+                return {
+                    descuento_id: descuentoIdElement ? descuentoIdElement.value : null,
+                    descuento_monto: descuentoMontoElement ? descuentoMontoElement.value : null
+                };
+            }).filter(descuento => descuento.descuento_id !== null);
+
+            console.log('Descuentos:', descuentos);
+
+
+            const impuestos = Array.from(document.querySelectorAll('.impuesto')).map(impuestoDiv => {
+                const impuestoIdElement = impuestoDiv.querySelector('.impuesto_nombre');
+                const impuestoMontoElement = impuestoDiv.querySelector('.impuesto_monto');
+
+                console.log('Impuesto ID Element:', impuestoIdElement);
+                console.log('Impuesto Monto Element:', impuestoMontoElement);
+
+                return {
+                    impuesto_id: impuestoIdElement ? impuestoIdElement.value : null,
+                    impuesto_monto: impuestoMontoElement ? impuestoMontoElement.value : null
+                };
+            }).filter(impuesto => impuesto.impuesto_id !== null);
+
+            console.log('Impuestos:', impuestos);
+
+
+            const total = calcularTotal(); 
+
+            // Condiciones para el uso o acumulación de puntos
+            let puntosFinales = puntos;
+            let totalFinal = total;
+
+            if (tipoMovimiento === "1") {
+                let puntosAdicionales = 0;
+                if (total < 1000) {
+                    puntosAdicionales = 10;
+                } else if (total >= 1000 && total <= 2000) {
+                    puntosAdicionales = 15;
+                } else if (total > 2000) {
+                    puntosAdicionales = 30;
+                }
+                puntosFinales = parseInt(puntos) + puntosAdicionales;
+
+            } else if (tipoMovimiento === "2") {
+                if (puntos >= total) {
+                    totalFinal = 0; // Usar todos los puntos para cubrir la factura
+                } else {
+                    totalFinal = total - puntos; // Restar los puntos del total
+                }
+            }
+            // Imprimir el totalFinal en la consola
+            console.log('Total:', totalFinal);
+
+            // Crear el objeto de factura con los datos finales
+            const facturaData = {
+                fecha,
+                tipo_movimiento: tipoMovimiento,
+                sucursal_id,
+                cliente_id,
+                empleado_id,
+                tarjeta_id,
+                puntos: puntosFinales,
+                pago_id,
+                producto,
+                recargos,
+                descuentos,
+                impuestos,
+                total: totalFinal
+            };
+
+            // Enviar la solicitud al servidor
+            fetch('http://localhost:3000/factura', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(facturaData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Factura registrada exitosamente');
+                    window.location.href = 'facturacion.html';
+                } else {
+                    alert(`Error al registrar la factura: ${data.message}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al conectar con el servidor');
+            });
+        }
+            
+    </script>
+</body>
+</html>

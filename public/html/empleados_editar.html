@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LADY SA LADY SU</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- vertical navigation -->
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="">
+                    <span class="icon"><ion-icon name="flower-outline"></ion-icon></span>
+                    <span class="title">LADY SA LADY SU</span>
+                </a>
+            </li>
+            <li>
+                <a href="pagina.html">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <span class="title">INICIO</span>
+                </a>
+            </li>
+            <li>
+                <a href="facturacion.html">
+                    <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                    <span class="title">FACTURACION</span>
+                </a>
+            </li>
+            <li>
+                <a href="empleados.html">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="title">GESTION DE EMPLEADOS</span>
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="title">GESTION DE CLIENTES</span>
+                </a>
+            </li>
+            <li>
+                <a href="productos.html">
+                    <span class="icon"><ion-icon name="shirt-outline"></ion-icon></span>
+                    <span class="title">GESTION DE PRODUCTOS</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://app.tango.us/app/workflow/Tienda-de-Ropa--Lady-Sa-Lady-Su---Gesti-n-de-Empleados--Clientes-y-Productos-990bbcb321ab42bab462bcadf220cfa4">
+                    <span class="icon"><ion-icon name="documents-outline"></ion-icon></span>
+                    <span class="title">GUIA PARA EL USUARIO</span>
+                </a>
+            </li> 
+        </ul>
+    </div>
+
+    <!-- main -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle menu-toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <!-- horizontal navigation -->
+            <div class="horizontal-navigation">
+                <ul>
+                    <li>
+                        <a href="empleados.html">
+                            <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
+                            <span class="title">Registrar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="empleados_editar.html">
+                            <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
+                            <span class="title">Editar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="empleados_eliminar.html">
+                            <span class="icon"><ion-icon name="trash-outline"></ion-icon></span>
+                            <span class="title">Eliminar</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Formulario de Datos del Empleado -->
+        <div class="form-container">
+            <h2>Datos del Empleado</h2>
+            <form>
+                <div class="form-group">
+                    <label for="id">Id de Empleado</label>
+                    <input type="text" id="id" name="id">
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="cancel-btn">CANCELAR</button>
+                    <button type="button" class="register-btn" onclick="redirectToEdit()">EDITAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script>
+    function redirectToEdit() {
+        const id = document.getElementById('id').value;
+        if (id) {
+            window.location.href = `empleados_editar2.html?id=${id}`;
+        } else {
+            alert('Por favor, ingrese un ID de empleado.');
+        }
+    }
+    </script>
+    <script src="../js/main.js"></script>
+    <!-- ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

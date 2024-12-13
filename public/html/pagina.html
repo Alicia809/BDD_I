@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Ropa</title>
+    <link rel="stylesheet" href="../css/pagina.css">
+    <style>
+        /* Estilos para la ventana emergente */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto; /* Centrar la ventana modal */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="../img/logo.png" alt="Logo">
+        <nav>
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#products">Productos</a></li>
+                <li><a href="facturacion.html">Sistema de Gestion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Tu tienda amiga</h2>
+            <p>¡Bienvenidos a Tienda Ladies! Explora nuestra colección de ropa moderna y elegante diseñada para resaltar tu estilo único. Ya sea que busques algo casual o formal, aquí encontrarás las prendas perfectas para cada ocasión. ¡Te invitamos a descubrir las últimas tendencias y a disfrutar de una experiencia de compra inolvidable!</p>
+        </section>
+
+        <section id="products">
+            <h2>Productos Destacados</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="../img/op1.jpg" alt="Prenda 1">
+                    <h3>Algo Casual</h3>
+                    <p>L500.99</p>
+                    <button onclick="mostrarVentanaEmergente()">Ver Detalles</button>
+                </div>
+                <div class="product-item">
+                    <img src="../img/op2.jpg" alt="Prenda 2">
+                    <h3>Algo Cómodo</h3>
+                    <p>L800.99</p>
+                    <button onclick="mostrarVentanaEmergente()">Ver Detalles</button>
+                </div>
+                <div class="product-item">
+                    <img src="../img/op3.jpg" alt="Prenda 3">
+                    <h3>Algo para el verano</h3>
+                    <p>L356.99</p>
+                    <button onclick="mostrarVentanaEmergente()">Ver Detalles</button>
+                </div>
+            </div>
+            <div> <li></li> </div>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="../img/op4.jpg" alt="Prenda 1">
+                    <h3>Listos para la playa</h3>
+                    <p>L600.99</p>
+                    <button onclick="mostrarVentanaEmergente()">Ver Detalles</button>
+                </div>
+                <div class="product-item">
+                    <img src="../img/op5.jpg" alt="Prenda 2">
+                    <h3>Listos para relajarse</h3>
+                    <p>L540.99</p>
+                    <button>Ver Detalles</button>
+                </div>
+                <div class="product-item">
+                    <img src="../img/op6.jpg" alt="Prenda 2">
+                    <h3>Listos para gustar</h3>
+                    <p>L359.99</p>
+                    <button onclick="mostrarVentanaEmergente()">Ver Detalles</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Ventana emergente -->
+    <div id="miModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarVentanaEmergente()">&times;</span>
+            <h2>Más información</h2>
+            <p>¡Visítanos para más detalles sobre este producto!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Lady SA Lady SU. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="scroll-to-top">↑</div>
+
+    <script src="../js/pagina.js"></script>
+    <script>
+        // Función para mostrar la ventana emergente
+        function mostrarVentanaEmergente() {
+            document.getElementById("miModal").style.display = "block";
+        }
+
+        // Función para cerrar la ventana emergente
+        function cerrarVentanaEmergente() {
+            document.getElementById("miModal").style.display = "none";
+        }
+
+        // Cerrar la ventana emergente cuando se hace clic fuera de ella
+        window.onclick = function(event) {
+            var modal = document.getElementById("miModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

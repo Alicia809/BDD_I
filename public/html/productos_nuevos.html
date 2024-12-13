@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LADY SA LADY SU</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- vertical navigation -->
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="">
+                    <span class="icon"><ion-icon name="flower-outline"></ion-icon></span>
+                    <span class="title">LADY SA LADY SU</span>
+                </a>
+            </li>
+            <li>
+                <a href="pagina.html">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <span class="title">INICIO</span>
+                </a>
+            </li>
+            <li>
+                <a href="facturacion.html">
+                    <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                    <span class="title">FACTURACION</span>
+                </a>
+            </li>
+            <li>
+                <a href="empleados.html">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="title">GESTION DE EMPLEADOS</span>
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="title">GESTION DE CLIENTES</span>
+                </a>
+            </li>
+            <li>
+                <a href="productos.html">
+                    <span class="icon"><ion-icon name="shirt-outline"></ion-icon></span>
+                    <span class="title">GESTION DE PRODUCTOS</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://app.tango.us/app/workflow/Tienda-de-Ropa--Lady-Sa-Lady-Su---Gesti-n-de-Empleados--Clientes-y-Productos-990bbcb321ab42bab462bcadf220cfa4">
+                    <span class="icon"><ion-icon name="documents-outline"></ion-icon></span>
+                    <span class="title">GUIA PARA EL USUARIO</span>
+                </a>
+            </li>  
+        </ul>
+    </div>
+    <!-- main -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle menu-toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <!-- horizontal navigation -->
+            <div class="horizontal-navigation">
+                <ul>
+                    <li>
+                        <a href="productos.html">
+                            <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
+                            <span class="title">Poducto Normal</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="productos_nuevos.html">
+                            <span class="icon"><ion-icon name="add-circle-outline"></ion-icon></span>
+                            <span class="title">Producto Nuevo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="productos_proveedor_nuevos.html">
+                            <span class="icon"><ion-icon name="add-circle-outline"></ion-icon></span>
+                            <span class="title">Producto y Proveedor Nuevos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Formulario de Datos del Producto -->
+        <div class="form-container">
+            <h2>Datos del Nuevo Producto</h2>
+            <form id=productoForm>
+                <div class="form-group">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="nombre_producto">Nombre del Producto</label>
+                    <input type="text" id="nombre_producto" name="nombre_producto">
+                </div>
+                <div class="form-group">
+                    <label for="id_categoria">Id de Categoría</label>
+                    <input type="text" id="id_categoria" name="id_categoria">
+                </div>
+                <div class="form-group">
+                    <label for="id_temporada">Id de Temporada</label>
+                    <input type="text" id="id_temporada" name="id_temporada">
+                </div>
+                <div class="form-group">
+                    <label for="f_ingreso">Fecha de Ingreso</label>
+                    <input type="date" id="f_ingreso" name="f_ingreso">
+                </div>
+                <div class="form-group">
+                    <label for="c_ingreso">Cantidad Ingresada</label>
+                    <input type="text" id="c_ingreso" name="c_ingreso">
+                </div>
+                <div class="form-group">
+                    <label for="p_costo">Precio Costo</label>
+                    <input type="text" id="p_costo" name="p_costo">
+                </div>
+                <div class="form-group">
+                    <label for="p_venta">Precio Venta</label>
+                    <input type="text" id="p_venta" name="p_venta">
+                </div>
+                <div class="form-group">
+                    <label for="id_bodega">Id de la Bodega</label>
+                    <input type="text" id="id_bodega" name="bodega">
+                </div>
+                <div class="form-group">
+                    <label for="id_proveedor">Id del Proveedor</label>
+                    <input type="text" id="id_proveedor" name="id_proveedor">
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="cancel-btn" id="cancelButton">CANCELAR</button>
+                    <button type="submit" class="register-btn">REGISTRAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('productoForm');
+        const cancelButton = document.getElementById('cancelButton');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = {
+                    nombre_producto: document.getElementById('nombre_producto').value,
+                    id_categoria: document.getElementById('id_categoria').value,
+                    id_temporada: document.getElementById('id_temporada').value,
+                    f_ingreso: document.getElementById('f_ingreso').value,
+                    c_ingreso: document.getElementById('c_ingreso').value,
+                    p_costo: document.getElementById('p_costo').value,
+                    p_venta: document.getElementById('p_venta').value,
+                    id_bodega: document.getElementById('id_bodega').value,
+                    id_proveedor: document.getElementById('id_proveedor').value,
+                };
+
+                try {
+                    const response = await fetch('http://localhost:3000/registrar_producto_nuevo', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert('Datos registrados exitosamente');
+                        form.reset();
+                    } else {
+                        alert(`Error: ${result.error}`);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error en el registro de datos');
+                }
+            });
+
+            cancelButton.addEventListener('click', () => {
+                form.reset();
+            });
+    });
+    </script>
+
+    <!-- scripts -->
+    <script src="../js/main.js"></script>
+    <!-- ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>   
+
+</body>
+</html>
